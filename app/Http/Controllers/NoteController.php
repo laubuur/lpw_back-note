@@ -35,4 +35,12 @@ class NoteController extends Controller
             "total" => $notes->count()
         ]);
     }
+
+    public function get($id) {
+        $note = Note::find($id);
+        if (is_null($note)) {
+            return response()->json(['error' => 'not found'], 404);
+        }
+        return response()->json($note, 200);
+    }
 }
